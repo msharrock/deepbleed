@@ -1,3 +1,5 @@
+THIS SOFTWARE IS NOT INTENDED FOR CLINICAL USE
+
 Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License
 
 By exercising the Licensed Rights (defined below), You accept and agree to be
