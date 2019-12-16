@@ -11,7 +11,7 @@ Command Line Argument Parsing Tools
 import os
 import argparse
 
-def args(session):
+def args(setting):
 
     '''
     Command Line Argument Interpreter
@@ -22,9 +22,10 @@ def args(session):
     Returns:
         - args: object, accessible representation of arguments
     '''
-    parser = argparse.ArgumentParser(description="Arguments for Prediction of Hemorrhage")
+    if setting == 'predict':
 
-if session == 'predict':   
+        parser = argparse.ArgumentParser(description="Arguments for Prediction of Hemorrhage")
+    
         parser.add_argument('--indir', required=True, action='store',
                             dest=IN_DIR, help='input directory')
         parser.add_argument('--outdir', required=True, action='store',
