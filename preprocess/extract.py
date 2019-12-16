@@ -15,14 +15,15 @@ from fsl.wrappers import fslmaths, bet
 
 def brain(image):
 
-'''
-Brain Extraction with FSL 
+        '''
+        Brain Extraction with FSL 
 
-Params:
+        Params:
         - image: nifti object, scan to brain extract
-Output: 
+        Output: 
         - brain_image: nifti object, extracted brain
-'''
+        '''
+
         tmpfile = 'tmpfile.nii.gz'
         image.to_filename(tmpfile)
         mask = fslmaths(image).thr('0.000000').uthr('100.000000').bin().fillh().run()
