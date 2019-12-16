@@ -35,5 +35,5 @@ if session == 'predict':
                             type=int, dest=GPUS, 
                             help='input system ID of GPU or input -1 for all')
         parser.add_argument('--cpus', required=False, action='store',
-                            type=int, dest=CPUS, help='number of CPU cores'))
+                            type=int, dest=CPUS, help='number of CPU cores')
     

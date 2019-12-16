@@ -27,7 +27,14 @@ def nii2ants(image):
     return ants_image
 
 def ants2tf(image):
+    ants_params = [image.origin, image.spacing, image.direction]
     image = image.numpy()
     tf_image = tf.convert_to_tensor(image, dtype=tf.float32)
     tf_image = tf.expand_dims(tf_image, -1)
-    return tf_image
+    return tf_image, ants_params
+
+def tf2ants(image, ants_params):
+    image = tf.squeeze(image)
+    image = image.numpy()
+    return image
+
