@@ -86,8 +86,7 @@ class VNetOutBlock(layers.Layer):
         self.binary = layers.Conv3D(filters=1, kernel_size=(1,1,1), strides=1, 
                                          padding='valid', kernel_initializer='he_normal', activation='sigmoid')
         #self.softmax = layers.Softmax()
-        self.argmax = 
-        
+                
     def call(self, inputs):     
         x = self.final(inputs)
         x = self.binary(x)
