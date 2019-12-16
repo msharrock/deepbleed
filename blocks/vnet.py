@@ -1,0 +1,95 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @author: msharrock
+# version: 0.0.1
+
+"""
+VNet Blocks for DeepBleed  
+
+tensorflow version 2.0
+
+"""
+
+import tensorflow as tf
+from tensorflow.keras import layers
+
+class VNetInBlock(layers.Layer):
+    def __init__(self, shape):
+        super(VNetInBlock, self).__init__()
+        self.shape = shape
+        self.add = layers.Add()
+        self.inlayer = layers.Input(shape = self.shape)
+        self.concatenate = layers.Concatenate() 
+        self.convolution = layers.Conv3D(filters=16, kernel_size=(5,5,5), strides=1, 
+                                         padding='same', kernel_initializer='he_normal', activation='relu') 
+
+    def call(self, inputs): 
+        #x_in = self.inlayer(inputs)
+        x = self.convolution(inputs)
+        d = self.concatenate(16 * [inputs])
+        x = self.add([x, d])
+        return x
+
+class VNetDownBlock(layers.Layer):
+    def __init__(self, channels, n_convs):
+        super(VNetDownBlock, self).__init__()
+        self.channels = channels
+        self.n_convs = n_convs
+        self.add = layers.Add()
+        self.downsample = layers.Conv3D(filters=self.channels, kernel_size=(2,2,2), strides=2,
+                                         padding='valid', kernel_initializer='he_normal', activation='relu')
+        self.convolution = layers.Conv3D(filters=self.channels, kernel_size=(5,5,5), strides=1, 
+                                         padding='same', kernel_initializer='he_normal', activation='relu') 
+
+    def call(self, inputs):  
+        d = self.downsample(inputs) 
+        
+        for _ in range(self.n_convs):
+            x = self.convolution(d)
+            
+        x = self.add([x, d])  
+         
+        return x
+
+class VNetUpBlock(layers.Layer):
+    def __init__(self, channels, n_convs):
+        super(VNetUpBlock, self).__init__()
+        self.channels = channels
+        self.n_convs = n_convs
+        self.add = layers.Add() 
+        self.concatenate = layers.Concatenate() 
+        self.upsample = layers.Conv3DTranspose(filters=self.channels//2, kernel_size=(2,2,2), strides=2,
+                                               padding='valid', kernel_initializer='he_normal', activation='relu')
+        self.convolution = layers.Conv3D(filters=self.channels, kernel_size=(5,5,5), strides=1, 
+                                         padding='same', kernel_initializer='he_normal', activation='relu') 
+
+    def call(self, inputs, skip):  
+
+        x = self.upsample(inputs)
+        cat = self.concatenate([x, skip])
+        
+        for _ in range(self.n_convs):
+            x = self.convolution(cat)
+            
+        x = self.add([x, cat])  
+        
+        return x
+
+class VNetOutBlock(layers.Layer):
+
+    def __init__(self, in_chns):
+        super(VNetOutBlock, self).__init__()
+        self.in_chns = in_chns                
+        self.final = layers.Conv3D(filters=2, kernel_size=(1,1,1), strides=1, 
+                                         padding='valid', kernel_initializer='he_normal', activation='relu')
+        
+        self.binary = layers.Conv3D(filters=1, kernel_size=(1,1,1), strides=1, 
+                                         padding='valid', kernel_initializer='he_normal', activation='sigmoid')
+        #self.softmax = layers.Softmax()
+        self.argmax = 
+        
+    def call(self, inputs):     
+        x = self.final(inputs)
+        x = self.binary(x)
+        return x 
+
