@@ -22,8 +22,7 @@ Params:
         - image: nifti object, scan to brain extract
 Output: 
         - brain_image: nifti object, extracted brain
-       
-    '''
+'''
     tmpfile = 'tmpfile.nii.gz'
     image.to_filename(tmpfile)
     mask = fslmaths(image).thr('0.000000').uthr('100.000000').bin().fillh().run()
