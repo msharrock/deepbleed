@@ -30,7 +30,7 @@ https://arxiv.org/abs/1606.04797
 class VNet(tf.keras.Model):
     def __init__(self):
         super(VNet, self).__init__()
-        input_layer = VNetInBlock(16)
+        input_layer = VNetInBlock()
         down_1 = VNetDownBlock(32, 2)
         down_2 = VNetDownBlock(64, 3)
         down_3 = VNetDownBlock(128, 3)
@@ -39,7 +39,7 @@ class VNet(tf.keras.Model):
         up_3 = VNetUpBlock(128, 3)
         up_2 = VNetUpBlock(64, 2)
         up_1 = VNetUpBlock(32, 1)
-        outblock = VNetOutBlock(32)
+        outblock = VNetOutBlock()
         
     def call(self, shape):
         inputs = layers.Input(shape = shape)
@@ -53,4 +53,5 @@ class VNet(tf.keras.Model):
         x = up_3(x, skip=x_64)
         x = up_2(x, skip=x_32)
         x = up_1(x, skip=x_16)
-        outputs = outblock(x)
+        return outblock(x)
+               
