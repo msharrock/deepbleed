@@ -41,7 +41,7 @@ class VNet(tf.keras.Model):
         up_1 = VNetUpBlock(32, 1)
         outblock = VNetOutBlock(32)
         
-    def call(self, inputs, shape):
+    def call(self, shape):
         inputs = layers.Input(shape = shape)
         x_16 = input_layer(inputs) 
         x_32 = down_1(x_16)     
