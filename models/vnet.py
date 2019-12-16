@@ -27,7 +27,7 @@ https://arxiv.org/abs/1606.04797
 """
 
 
-class VNet(keras.Model):
+class VNet(tf.keras.Model):
     def __init__(self):
         super(VNet, self).__init__()
         input_layer = VNetInBlock(16)
