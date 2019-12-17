@@ -13,6 +13,7 @@ tensorflow version 2.0
 import tensorflow as tf
 from tensorflow.keras import layers
 
+
 class VNetInBlock(layers.Layer):
     def __init__(self):
         super(VNetInBlock, self).__init__()
@@ -24,8 +25,9 @@ class VNetInBlock(layers.Layer):
     def call(self, inputs): 
         x = self.convolution(inputs)
         d = self.concatenate(16 * [inputs])
-        x = self.add([x, d])
-        return x
+
+        return self.add([x, d])
+
 
 class VNetDownBlock(layers.Layer):
     def __init__(self, channels, n_convs):
@@ -44,9 +46,7 @@ class VNetDownBlock(layers.Layer):
         for _ in range(self.n_convs):
             x = self.convolution(d)
             
-        x = self.add([x, d])  
-         
-        return x
+        return self.add([x, d])  
 
 class VNetUpBlock(layers.Layer):
     def __init__(self, channels, n_convs):
@@ -61,16 +61,14 @@ class VNetUpBlock(layers.Layer):
                                          padding='same', kernel_initializer='he_normal', activation='relu') 
 
     def call(self, inputs, skip):  
-
         x = self.upsample(inputs)
         cat = self.concatenate([x, skip])
         
         for _ in range(self.n_convs):
             x = self.convolution(cat)
-            
-        x = self.add([x, cat])  
-        
-        return x
+                   
+        return self.add([x, cat])  
+
 
 class VNetOutBlock(layers.Layer):
 
@@ -81,10 +79,9 @@ class VNetOutBlock(layers.Layer):
         
         self.binary = layers.Conv3D(filters=1, kernel_size=(1,1,1), strides=1, 
                                          padding='valid', kernel_initializer='he_normal', activation='sigmoid')
-        
-        
+               
     def call(self, inputs):     
         x = self.final(inputs)
-        x = self.binary(x)
-        return x 
+
+        return self.binary(x)
 
