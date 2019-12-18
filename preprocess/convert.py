@@ -28,16 +28,15 @@ def nii2ants(image):
     os.remove(tmpfile)
     return image
 
-def ants2tf(image):
+def ants2np(image):
     ants_params = [image.origin, image.spacing, image.direction]
     image = image.numpy()
     image = np.expand_dims(image, -1)
     image = np.expand_dims(image, 0)
     return image, ants_params
 
-def tf2ants(image, ants_params):
-    image = tf.squeeze(image)
-    image = image.numpy()
+def np2ants(image, ants_params):
+    image = np.squeeze(image)
     image = ants.from_numpy(image, origin = ants_params[0], spacing = ants_params[1], direction = ants_params[2])
     return image
 
