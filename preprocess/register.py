@@ -7,6 +7,7 @@
 Registration methods for DeepBleed 
 
 """
+import ants
 
 def rigid(fixed, moving):
 
