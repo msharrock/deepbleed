@@ -43,7 +43,7 @@ def invert(fixed, moving, transforms):
                 - image: ants image, inverted
         '''
         kwargs = {'-n': 'BSpline[<order=3>]'}   
-        image = ants.apply_transforms(fixed, moving, transformlist = transforms, interpolator = 'nearestNeighbor', whichtoinvert = [True])   
+        image = ants.apply_transforms(fixed = fixed, moving = moving, transformlist = transforms, interpolator = 'nearestNeighbor', whichtoinvert = [True])   
 
         return image
 
