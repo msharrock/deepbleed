@@ -23,9 +23,9 @@ def nii2ants(image):
     from tempfile import mktemp
     tmpfile = mktemp(suffix='.nii.gz')
     image.to_filename(tmpfile)
-    ants_image = ants.image_read(tmpfile, pixeltype = 'float')
+    image = ants.image_read(tmpfile, pixeltype = 'float')
     os.remove(tmpfile)
-    return ants_image
+    return image
 
 def ants2tf(image):
     ants_params = [image.origin, image.spacing, image.direction]
