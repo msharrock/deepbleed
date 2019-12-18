@@ -7,9 +7,10 @@
 Image Format Conversion for DeepBleed 
 
 """
-import.tf
+
 import ants
 import nibabel as nib
+import tensorflow as tf
 
 def ants2nii(image):
     array_data = image.numpy()
