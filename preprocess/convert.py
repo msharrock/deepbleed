@@ -30,7 +30,7 @@ def nii2ants(image):
 
 def ants2np(image):
     ants_params = [image.origin, image.spacing, image.direction]
-    image = image.numpy()
+    image = image.numpy().copy()
     image = np.expand_dims(image, -1)
     image = np.expand_dims(image, 0)
     return image, ants_params
