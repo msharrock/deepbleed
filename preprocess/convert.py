@@ -23,7 +23,7 @@ def nii2ants(image):
     from tempfile import mktemp
     tmpfile = mktemp(suffix='.nii.gz')
     image.to_filename(tmpfile)
-    image = ants.image_read(tmpfile, pixeltype = 'float')
+    ants_image = ants.image_read(tmpfile, pixeltype = 'float')
     os.remove(tmpfile)
     return ants_image
 
