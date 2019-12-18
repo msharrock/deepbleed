@@ -9,6 +9,7 @@ Image Format Conversion for DeepBleed
 """
 import os
 import ants
+import numpy as np
 import nibabel as nib
 import tensorflow as tf
 
@@ -30,9 +31,8 @@ def nii2ants(image):
 def ants2tf(image):
     ants_params = [image.origin, image.spacing, image.direction]
     image = image.numpy()
-    image = tf.convert_to_tensor(image, dtype=tf.float32)
-    image = tf.expand_dims(image, -1)
-    image = tf.expand_dims(image, 0)
+    image = np.expand_dims(image, -1)
+    image = np.expand_dims(image, 0)
     return image, ants_params
 
 def tf2ants(image, ants_params):
