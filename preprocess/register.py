@@ -23,8 +23,8 @@ def rigid(fixed, moving):
                 - transforms: transformation affine matrix
         '''
 
-        kwargs = {'-n': 'BSpline[<order=3>]'}
-        tx = ants.registration(fixed, moving, type_of_transform='DenseRigid', mask=None, grad_step=0.1, flow_sigma=3, total_sigma=0, 
+        kwargs = {'-n': 'nearestNeighbor'}
+        tx = ants.registration(fixed, moving, type_of_transform='Rigid', mask=None, grad_step=0.2, flow_sigma=3, total_sigma=0, 
                            aff_metric='mattes', aff_sampling=64, syn_metric ='mattes',**kwargs) 
                         
         image = tx['warpedmovout']
