@@ -55,10 +55,11 @@ OUT_DIR = setup.OUT_DIR
 
 # load the model and weights
 model = VNet()
-model.load_weights()
+model.load_weights(WEIGHT_PATH)
 
 # load input data
 files = sorted(next(os.walk(IN_DIR)))[2]
+files = [os.path.join(IN_DIR, f) for f in files]
 template = ants.image_read(TEMPLATE_PATH, pixeltype = 'float')
 
 for filename in files:
@@ -68,14 +69,14 @@ for filename in files:
     image = extract.brain(image)
     image = convert.nii2ants(image)
     image, transforms = register.rigid(template, image)
-    image = convert.ants2tf(image)
+    image = convert.ants2np(image)
 
 # neural net prediction    
-    prediction = model.predict(image)
+    prediction = model.predict(image, batch_size=1, workers=setup.CPUS)
 
 # invert registration
-    image = ants.img_read(filename)
-    prediction = convert.tf2ants(prediction)
+    original_image = ants.image_read(filename)
+    prediction = convert.np2ants(prediction)
     prediction = register.invert(image, prediction, transforms)
     prediction = convert.ants2nii(prediction)
     nib.save(prediction, os.path.join(OUT_DIR, filename))
