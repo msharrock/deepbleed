@@ -12,7 +12,7 @@ import ants
 def rigid(fixed, moving):
 
         '''
-        Rigid Registration with ANTS
+        Rigid Registration with ANTs
 
         Params:
                 - moving: ants image, image to move when registering
@@ -34,7 +34,7 @@ def rigid(fixed, moving):
 
 def invert(fixed, moving, transforms):
         '''
-        Inverse Transform with ANTS
+        Inverse Transform with ANTs
 
         Params:
                 - image: ants image, image to revert
