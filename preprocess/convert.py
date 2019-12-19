@@ -37,6 +37,7 @@ def ants2np(image):
 
 def np2ants(image, ants_params):
     image = np.squeeze(image)
+    image = image.astype('uint8')
     image = ants.from_numpy(image, origin = ants_params[0], spacing = ants_params[1], direction = ants_params[2])
     return image
 
