@@ -42,7 +42,7 @@ def invert(fixed, moving, transforms):
         Outputs: 
                 - image: ants image, inverted
         '''
-        image = ants.apply_transforms(fixed = fixed, moving = moving, transformlist = transforms, interpolator = 'genericLabel', whichtoinvert = [True])   
+        image = ants.apply_transforms(fixed = fixed, moving = moving, transformlist = transforms, interpolator = 'multiLabel', whichtoinvert = [True])   
 
         return image
 
