@@ -8,8 +8,8 @@ We provide the 3D model from our paper "3D Deep Neural Network Segmentation of I
 If it happens to be missing some dependencies listed above, you may install them with pip: <br/>
 ```
 $ pip install tensorflow-gpu==2.0.0
-$ pip install fsl
-$ pip install ants
+$ pip install fslpy
+$ pip install antspy
 $ pip install nibabel
 $ ...
 ```
