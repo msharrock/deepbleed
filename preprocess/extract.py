@@ -9,7 +9,7 @@ Extraction methods for DeepBleed
 '''
 
 import os
-
+import nibabel as nib
 from fsl.wrappers import fslmaths, bet
 
 
