@@ -23,15 +23,19 @@ def brain(image):
         Output: 
         - brain_image: nifti object, extracted brain
         '''
-
+        affine = image.affine
+        header = image.header
         tmpfile = 'tmpfile.nii.gz'
         image.to_filename(tmpfile)
+
+        # FSL calls
         mask = fslmaths(image).thr('0.000000').uthr('100.000000').bin().fillh().run()
         fslmaths(image).mas(mask).run(tmpfile)
         bet(tmpfile, tmpfile, fracintensity = 0.01)
         mask = fslmaths(tmpfile).bin().fillh().run()
-        brain_image = fslmaths(image).mas(mask).run()
+        image = fslmaths(image).mas(mask).run()
+        image = nib.Nifti1Image(image.get_data(), affine, header)
         os.remove(tmpfile)
 
-        return brain_image
+        return image
 
