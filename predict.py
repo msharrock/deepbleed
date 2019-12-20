@@ -9,14 +9,14 @@ Prediction Script for DeepBleed
 Command Line Arguments:
         --indir: string, location to perform prediction
         --outdir: string, location to save predictions
-        --weights: string, optional, location of model weights
+        --weights: string, location of model weights
         --cpus: int, optional, number of cpu cores to utilize
         --gpus: int, optional, number of gpus to utilize
 
 """
 
 import os
-#import fsl
+import fsl
 import ants 
 import nibabel as nib
 import tensorflow as tf
