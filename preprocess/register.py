@@ -28,7 +28,7 @@ def rigid(fixed, moving):
                            aff_metric='mattes', aff_sampling=64, syn_metric ='mattes',**kwargs) 
                         
         image = tx['warpedmovout']
-        transforms = tx['invtransforms']
+        transforms = tx['fwdtransforms']
         return image, transforms
 
 
@@ -42,7 +42,7 @@ def invert(fixed, moving, transforms):
         Outputs: 
                 - image: ants image, inverted
         '''
-        image = ants.apply_transforms(fixed = fixed, moving = moving, transformlist = transforms, interpolator = 'nearestNeighbor', whichtoinvert = [False])   
+        image = ants.apply_transforms(fixed = fixed, moving = moving, transformlist = transforms, interpolator = 'genericLabel', whichtoinvert = [True])   
 
         return image
 
