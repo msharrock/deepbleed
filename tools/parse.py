@@ -11,7 +11,7 @@ Command Line Argument Parsing Tools
 import os
 import argparse
 
-def args(setting):
+def args(mode):
 
     '''
     Command Line Argument Interpreter
@@ -22,7 +22,7 @@ def args(setting):
     Returns:
         - args: object, accessible representation of arguments
     '''
-    if setting == 'predict':
+    if mode == 'predict':
 
         parser = argparse.ArgumentParser(description="Arguments for Prediction of Hemorrhage")
     
@@ -30,11 +30,11 @@ def args(setting):
                             dest=IN_DIR, help='input directory')
         parser.add_argument('--outdir', required=True, action='store',
                             dest=OUT_DIR, help='output directory')
-        parser.add_argument('--weights', required=False, action='store',
+        parser.add_argument('--weights', required=True, action='store',
                             dest='weights', help='tf model weights')
         parser.add_argument('--gpus', required=False, action='store',
                             type=int, dest=GPUS, 
-                            help='input system ID of GPU or input -1 for all')
+                            help='number of GPUs to utilize')
         parser.add_argument('--cpus', required=False, action='store',
                             type=int, dest=CPUS, help='number of CPU cores')
     

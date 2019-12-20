@@ -29,8 +29,7 @@ from models import vnet
 
 # load command line arguments
 setup = parse.args('predict')
-if setup.CPUS == None:
-    setup.CPUS = '1'
+
 # environmental variable setup
 os.environ["ANTS_RANDOM_SEED"] = '1'
 os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'
