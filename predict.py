@@ -16,9 +16,7 @@ Command Line Arguments:
 """
 
 import os
-import shutil
-
-import fsl
+import fslpy
 import ants 
 import nibabel as nib
 import tensorflow as tf
