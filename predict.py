@@ -66,18 +66,19 @@ for filename in files:
 
 # preprocessing    
     image = nib.load(filename)
+    affine = image.affine
     image = extract.brain(image)
     image = convert.nii2ants(image)
     image, transforms = register.rigid(template, image)
-    image = convert.ants2np(image)
+    image, ants_params = convert.ants2np(image)
 
 # neural net prediction    
     prediction = model.predict(image, batch_size=1, workers=setup.CPUS)
 
 # invert registration
     original_image = ants.image_read(filename)
-    prediction = convert.np2ants(prediction)
-    prediction = register.invert(image, prediction, transforms)
+    prediction = convert.np2ants(prediction, ants_params)
+    prediction = register.invert(original_image, prediction, transforms)
     prediction = convert.ants2nii(prediction)
     nib.save(prediction, os.path.join(OUT_DIR, filename))
 
