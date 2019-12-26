@@ -23,8 +23,5 @@ You may optionally specify the number of GPUs and CPUs to use with --gpus and --
 The underlying deep neural network architecture is based on the VNet by Milletari et al. at https://github.com/faustomilletari/VNet
 
 
-## Authors
 
-* **Matthew Sharrock** - *Study Design, Neural Network Dev/Training, Preprocessing(Python)*
-* **John Muschelli** - *Study Design, Preprocessing, Statistical Validation*
 
