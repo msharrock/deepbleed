@@ -32,7 +32,7 @@ os.environ["ANTS_RANDOM_SEED"] = '1'
 os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'
 
 if setup.CPUS:
-    os.environ["ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS"] = setup.CPUS
+    os.environ["ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS"] = str(setup.CPUS)
 
 if setup.GPUS:
     os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(map(str,range(setup.GPUS)))
