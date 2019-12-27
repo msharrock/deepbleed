@@ -12,7 +12,6 @@ Tensorflow | gpu-2.0.0-rc0 | https://www.tensorflow.org
 ANTsPy | 0.1.4 | https://github.com/ANTsX/ANTsPy
 FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
 FSL | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
-
 <br/>
 
 To install on a local debian linux machine, cd into the deepbleed directory and run the setup script:<br/>
@@ -24,17 +23,18 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 ```
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights
 ```
-You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
 <br/>
+You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
 
 Alternatively, you can pull a pre-built docker image with the dependencies installed:<br/>
 ```
-$ docker pull msharrock/deepbleed
+$ docker pull msharrock/deepbleed 
 ```
 <br/>
 To run a prediction, start the docker image and initiatize with access to the data path volume:<br/>
 ```
-$ docker run -it msharrock/deepbleed bash -v /path/to/data
+$ docker run -it msharrock/deepbleed bash -v /path/to/data 
 ```
 <br/> 
-Then run predictions as previously noted, the working directory on launch is set to this repository
+Then run predictions as previously noted, the working directory on launch is set to this repository<br/> 
+
