@@ -15,26 +15,26 @@ FSL | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 <br/>
 
 To install on a local debian linux machine, cd into the deepbleed directory and run the setup script:<br/>
-```
+'''
 $ python3 setup.py 
-```
+'''
 <br/>
 To run an ICH prediction set the path to directories for inputs, outputs and model weights:<br/>
-```
-$ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights
-```
+'''
+$ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
+'''
 <br/>
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
 
 Alternatively, you can pull a pre-built docker image with the dependencies installed:<br/>
-```
+'''
 $ docker pull msharrock/deepbleed 
-```
+'''
 <br/>
 To run a prediction, start the docker image and initiatize with access to the data path volume:<br/>
-```
+'''
 $ docker run -it msharrock/deepbleed bash -v /path/to/data 
-```
+'''
 <br/> 
 Then run predictions as previously noted, the working directory on launch is set to this repository<br/> 
 
