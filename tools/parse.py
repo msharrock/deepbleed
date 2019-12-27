@@ -25,9 +25,9 @@ def args(mode):
         parser = argparse.ArgumentParser(description="Arguments for Prediction of Hemorrhage")
     
         parser.add_argument('--indir', required=True, action='store',
-                            dest=IN_DIR, help='input directory')
+                            dest='IN_DIR', help='input directory')
         parser.add_argument('--outdir', required=True, action='store',
-                            dest=OUT_DIR, help='output directory')
+                            dest='OUT_DIR', help='output directory')
         parser.add_argument('--weights', required=True, action='store',
                             dest='weights', help='tf model weights')
         parser.add_argument('--gpus', required=False, action='store',
