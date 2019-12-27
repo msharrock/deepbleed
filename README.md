@@ -32,7 +32,7 @@ Alternatively, you can pull a pre-built docker image with the dependencies insta
 $ docker pull msharrock/deepbleed
 ```
 <br/>
-To run a prediction, start the docker image and initiatize with access to the data path volume: 
+To run a prediction, start the docker image and initiatize with access to the data path volume:<br/>
 ```
 $ docker run -it msharrock/deepbleed bash -v /path/to/data
 ```
