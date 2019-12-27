@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # @author: msharrock
 # version: 0.0.1
 
-print('printed')
 
 """
 Prediction Script for DeepBleed 
