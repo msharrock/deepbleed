@@ -50,7 +50,7 @@ print(IN_DIR, OUT_DIR)
 
 # load the model and weights
 model = VNet()
-model.load_weights(tf.train.latest_checkpoint(WEIGHT_PATH))
+model.load_weights(WEIGHT_PATH)
 
 # load input data
 files = sorted(next(os.walk(IN_DIR))[2])
