@@ -21,7 +21,7 @@ $ python3 setup.py
 <br/>
 To run an ICH prediction set the path to directories for inputs, outputs and model weights:<br/>
 ```bash
-$ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights
+$ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
 <br/>
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
