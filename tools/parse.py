@@ -31,8 +31,8 @@ def args(mode):
         parser.add_argument('--weights', required=True, action='store',
                             dest='weights', help='tf model weights')
         parser.add_argument('--gpus', required=False, action='store',
-                            type=int, dest=GPUS, 
+                            type=int, dest='GPUS', 
                             help='number of GPUs to utilize')
         parser.add_argument('--cpus', required=False, action='store',
-                            type=int, dest=CPUS, help='number of CPU cores')
+                            type=int, dest='CPUS, help='number of CPU cores')
     
