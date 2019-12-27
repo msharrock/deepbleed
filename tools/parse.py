@@ -36,3 +36,4 @@ def args(mode):
         parser.add_argument('--cpus', required=False, action='store',
                             type=int, dest='CPUS', help='number of CPU cores')
     
+    return parser.parse_args()
