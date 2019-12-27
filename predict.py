@@ -53,7 +53,7 @@ model = VNet()
 model.load_weights(WEIGHT_PATH)
 
 # load input data
-files = sorted(next(os.walk(IN_DIR)))[2]
+files = sorted(next(os.walk(IN_DIR))[2])
 files = [os.path.join(IN_DIR, f) for f in files]
 template = ants.image_read(TEMPLATE_PATH, pixeltype = 'float')
 
