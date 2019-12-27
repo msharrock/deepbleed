@@ -68,7 +68,7 @@ for filename in files:
     image, ants_params = convert.ants2np(image)
 
 # neural net prediction    
-    prediction = model.predict(image, batch_size=1, workers=setup.CPUS)
+    prediction = model.predict(image, workers=setup.CPUS)
 
 # invert registration
     original_image = ants.image_read(filename)
