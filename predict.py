@@ -31,15 +31,13 @@ setup = parse.args('predict')
 os.environ["ANTS_RANDOM_SEED"] = '1'
 os.environ['FSLOUTPUTTYPE'] = 'NIFTI_GZ'
 
-if setup.CPUS == None:
-    pass
-else:
+if setup.CPUS:
     os.environ["ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS"] = setup.CPUS
 
-if setup.GPUS == None:
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-else:
+if setup.GPUS:
     os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(map(str,range(setup.GPUS)))
+else:
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 # set paths to scripts, templates, weights etc. 
 TEMPLATE_PATH = os.path.join('templates', 'scct_unsmooth_SS_0.01_128x128x128.nii.gz')
