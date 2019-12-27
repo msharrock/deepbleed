@@ -22,7 +22,7 @@ import tensorflow as tf
 
 from tools import parse
 from preprocess import extract, register, convert
-from models import vnet
+from models.vnet import VNet
 
 # load command line arguments
 setup = parse.args('predict')
