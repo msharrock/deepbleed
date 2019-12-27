@@ -34,5 +34,5 @@ def args(mode):
                             type=int, dest='GPUS', 
                             help='number of GPUs to utilize')
         parser.add_argument('--cpus', required=False, action='store',
-                            type=int, dest='CPUS, help='number of CPU cores')
+                            type=int, dest='CPUS', help='number of CPU cores')
     
