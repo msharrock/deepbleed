@@ -34,7 +34,7 @@ $ docker pull msharrock/deepbleed
 
 <br/>
 
-To run a prediction, start the docker image and initiatize with access to the data path:
+To run a prediction, start the docker image, link the data path that contains the indir and outdir:
 ```bash
 $ docker run -it msharrock/deepbleed bash -v /path/to/data:/data/ 
 ```
