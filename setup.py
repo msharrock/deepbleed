@@ -12,12 +12,13 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/msharrock/deepbleed",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_namespace_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: Creative Commons Noncommercial License",
         "Operating System :: Linux",
     ],
     python_requires='>=3.6',
-    install_requires=[i.strip() for i in open("requirements.txt").readlines()]
+    install_requires=[i.strip() for i in open("requirements.txt").readlines()],
+    dependency_links=['https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl']
 )
