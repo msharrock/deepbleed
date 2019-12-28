@@ -19,22 +19,20 @@ To install on a local debian linux machine, cd into the deepbleed directory and 
 $ python3 setup.py 
 ```
 
-To run an ICH prediction set the path to directories for inputs, outputs and model weights:<br/>
+To run an ICH prediction set the path to directories for inputs, outputs and model weights:
 ```bash
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
-<br/>
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
-
-Alternatively, you can pull a pre-built docker image with the dependencies installed:<br/>
+<br/>
+Alternatively, you can pull a pre-built docker image with the dependencies installed:
 ```bash
 $ docker pull msharrock/deepbleed 
 ```
 <br/>
-To run a prediction, start the docker image and initiatize with access to the data path volume:<br/>
+To run a prediction, start the docker image and initiatize with access to the data path:<br/>
 ```bash
-$ docker run -it msharrock/deepbleed bash -v /path/to/data 
+$ docker run -it msharrock/deepbleed bash -v /path/to/data:/data/ 
 ```
-<br/> 
 Then run predictions as previously noted, the working directory on launch is set to this repository<br/> 
 
