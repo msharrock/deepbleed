@@ -62,18 +62,23 @@ for filename in files:
 # preprocessing    
     image = nib.load(filename)
     affine = image.affine
+    print('brain extraction') 
     image = extract.brain(image)
     image = convert.nii2ants(image)
+    print('template registration')  
     image, transforms = register.rigid(template, image)
     image, ants_params = convert.ants2np(image)
 
-# neural net prediction    
+# neural net prediction 
+    print('generating prediction')   
     prediction = model.predict(image)
-
+    
 # invert registration
     original_image = ants.image_read(filename)
     prediction = convert.np2ants(prediction, ants_params)
     prediction = register.invert(original_image, prediction, transforms)
     prediction = convert.ants2nii(prediction)
-    nib.save(prediction, os.path.join(OUT_DIR, filename))
-
+    print('saving file')
+    nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename)))
+    
+print('complete')
