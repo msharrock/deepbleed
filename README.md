@@ -25,14 +25,15 @@ $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weigh
 ```
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
 <br/>
+
 Alternatively, you can pull a pre-built docker image with the dependencies installed:
 ```bash
 $ docker pull msharrock/deepbleed 
 ```
 <br/>
-To run a prediction, start the docker image and initiatize with access to the data path:<br/>
+To run a prediction, start the docker image and initiatize with access to the data path:
 ```bash
 $ docker run -it msharrock/deepbleed bash -v /path/to/data:/data/ 
 ```
-Then run predictions as previously noted, the working directory on launch is set to this repository<br/> 
+Then run predictions as previously noted, the working directory on launch is set to this repository.
 
