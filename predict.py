@@ -11,12 +11,13 @@ Command Line Arguments:
         --weights: string, location of model weights
         --cpus: int, optional, number of cpu cores to utilize
         --gpus: int, optional, number of gpus to utilize
-
+        --verbose: optional, script is verbose and timed
 """
 
 import os
 import fsl
 import ants 
+import time
 import nibabel as nib
 import tensorflow as tf
 
@@ -26,6 +27,7 @@ from models.vnet import VNet
 
 # load command line arguments
 setup = parse.args('predict')
+verbose = setup.verbose
 
 # environmental variable setup
 os.environ["ANTS_RANDOM_SEED"] = '1'
@@ -41,12 +43,15 @@ else:
 
 # set paths to scripts, templates, weights etc. 
 TEMPLATE_PATH = os.path.join('templates', 'scct_unsmooth_SS_0.01_128x128x128.nii.gz')
-WEIGHT_PATH = setup.weights
+
+if setup.weights:
+    WEIGHT_PATH = setup.weights
+else: 
+    WEIGHT_PATH = 'weights'
 
 # setup directory trees
 IN_DIR = setup.IN_DIR
 OUT_DIR = setup.OUT_DIR 
-print(IN_DIR, OUT_DIR)
 
 # load the model and weights
 model = VNet()
@@ -59,26 +64,41 @@ template = ants.image_read(TEMPLATE_PATH, pixeltype = 'float')
 
 for filename in files:
 
-# preprocessing    
+# preprocessing   
+    if verbose:
+        timestamp = time.time()
+        print('loading:', filename)  
     image = nib.load(filename)
-    affine = image.affine
-    print('brain extraction') 
+    
+    if verbose:
+        print('brain extraction') 
     image = extract.brain(image)
     image = convert.nii2ants(image)
-    print('template registration')  
+
+    if verbose:
+        print('template registration')  
     image, transforms = register.rigid(template, image)
     image, ants_params = convert.ants2np(image)
 
 # neural net prediction 
-    print('generating prediction')   
+    if verbose:
+        print('generating prediction')   
     prediction = model.predict(image)
     
 # invert registration
     original_image = ants.image_read(filename)
     prediction = convert.np2ants(prediction, ants_params)
+
+    if verbose:
+        print('inverting registration')
     prediction = register.invert(original_image, prediction, transforms)
     prediction = convert.ants2nii(prediction)
-    print('saving file')
+
+    if verbose:
+        print('saving:', os.path.join(OUT_DIR, os.path.basename(filename))
     nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename)))
     
-print('complete')
+    if verbose:
+        print(os.path.basename(filename), ': took {0} seconds !'.format(time.time() - timestamp))
+if verbose:
+    print ('All files complete, the pipeline took {0} seconds !'.format(time.time() - timestamp))

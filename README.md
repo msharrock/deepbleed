@@ -14,11 +14,11 @@ FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
 FSL | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 <br/>
 
-To install on a local debian linux machine, cd into the deepbleed directory and run the setup script:<br/>
+To install on a local debian linux machine, cd into the deepbleed directory and run the setup script:
 ```bash
 $ python3 setup.py 
 ```
-<br/>
+
 To run an ICH prediction set the path to directories for inputs, outputs and model weights:<br/>
 ```bash
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
