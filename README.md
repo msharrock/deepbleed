@@ -3,6 +3,7 @@
 ICH volumetric estimation is a task routinely performed in clinical research. This is the first publicly available deep neural network model to perform the task of ICH segmentation and volume estimation. The model expects non-contrast CT in NIfTI format and automatically performs preprocessing including a validated CT brain extraction method and spatial normalization via registration to a 1.5mm x 1.5mm x 1.5mm CT template with a shape of (128, 128, 128). 
  <br/>
 
+![DeepBleed pipeline](deepbleed.png)
 
 Current dependencies are listed below. 
 
@@ -11,7 +12,8 @@ Software | Version | URL
 Tensorflow | gpu-2.0.0-rc0 | https://www.tensorflow.org
 ANTsPy | 0.1.4 | https://github.com/ANTsX/ANTsPy
 FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
-FSL | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
+FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
+\*Please read and agree to the software license for FSL prior to use. 
 <br/>
 
 To run an ICH prediction set the path to directories for inputs, outputs and model weights:
