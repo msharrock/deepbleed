@@ -16,6 +16,7 @@ FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 
 \*Please read and agree to the software license for FSL prior to use. 
 <br/>
+<br/>
 
 To run an ICH prediction set the path to directories for inputs, outputs and model weights:
 ```bash
