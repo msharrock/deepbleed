@@ -13,6 +13,7 @@ Tensorflow | gpu-2.0.0-rc0 | https://www.tensorflow.org
 ANTsPy | 0.1.4 | https://github.com/ANTsX/ANTsPy
 FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
 FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
+
 \*Please read and agree to the software license for FSL prior to use. 
 <br/>
 
