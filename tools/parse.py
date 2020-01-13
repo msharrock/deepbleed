@@ -35,7 +35,7 @@ def args(mode):
                             help='number of GPUs to utilize')
         parser.add_argument('--cpus', required=False, action='store',
                             type=int, dest='CPUS', help='number of CPU cores')
-        parser.add_argument('-v', '--verbose' required=False, action='store_true',
+        parser.add_argument('-v', '--verbose', required=False, action='store_true',
                             help='verbose and timed script')
                             
     return parser.parse_args()
