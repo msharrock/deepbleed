@@ -24,9 +24,9 @@ def args(mode):
 
         parser = argparse.ArgumentParser(description="Arguments for Prediction of Hemorrhage")
     
-        parser.add_argument('-i',--indir', required=True, action='store',
+        parser.add_argument('-i','--indir', required=True, action='store',
                             dest='IN_DIR', help='input directory')
-        parser.add_argument('-o',--outdir', required=True, action='store',
+        parser.add_argument('-o','--outdir', required=True, action='store',
                             dest='OUT_DIR', help='output directory')
         parser.add_argument('-w','--weights', required=True, action='store',
                             dest='weights', help='tf model weights')
