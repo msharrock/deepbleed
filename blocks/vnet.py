@@ -54,7 +54,7 @@ class VNetDownBlock(layers.Layer):
         for _ in range(self.n_convs):
             x = self.convolution(x)
             x = self.activation(x)
-            if self.dropout:
+            if self.drop:
                 x = self.dropout(x, training=self.training)
             
         return self.add([x, d])  
@@ -90,7 +90,7 @@ class VNetUpBlock(layers.Layer):
             x = self.convolution(x)
             x = self.activation(x)
             if self.drop:
-                x = self.drop(x, training=self.training)
+                x = self.dropout(x, training=self.training)
             
         return self.add([x, cat])  
 
