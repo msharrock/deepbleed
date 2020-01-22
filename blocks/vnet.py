@@ -90,7 +90,7 @@ class VNetUpBlock(layers.Layer):
             x = self.convolution(x)
             x = self.activation(x)
             if self.drop:
-                x = self.dropout(x, training=self.training)
+                x = self.drop(x, training=self.training)
             
         return self.add([x, cat])  
 
