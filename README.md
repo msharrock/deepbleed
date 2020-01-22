@@ -23,8 +23,11 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
+<br/>
+Link to weights: https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing
 
 <br/>
+### DeepBleed Docker
 
 Alternatively, you can pull a pre-built docker image with the dependencies installed:
 ```bash
