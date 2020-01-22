@@ -26,7 +26,7 @@ You may optionally specify the number of GPUs and CPUs to use with --gpus and --
 <br/>
 Link to weights: https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing
 
-<br/>
+
 ### DeepBleed Docker
 
 Alternatively, you can pull a pre-built docker image with the dependencies installed:
