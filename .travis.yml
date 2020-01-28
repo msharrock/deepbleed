@@ -2,6 +2,7 @@
 language: python
 python:
   - "3.6"
+dist: trusty
 
 os:
   - linux
@@ -17,6 +18,7 @@ before_install:
   - export cmake_version="3.14"
   - cmake --version
   - x=`cmake_setup`; echo "${x}"; eval ${x};
+  - cmake --version
   - wget --no-check-certificate https://archive.data.jhu.edu/api/access/datafile/1311?gbrecs=true -O 01.tar.xz
   - tar xvf 01.tar.xz
   - rm 01.tar.xz
@@ -30,6 +32,7 @@ before_install:
   - ls -a 
 
 install:
+  - x=`export_clang_cxx`; eval ${x}  
   - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
   - tar xvf ITKR.tar.gz
   - export ITK_DIR=${PWD}/ITKR/libs
