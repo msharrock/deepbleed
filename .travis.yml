@@ -23,6 +23,12 @@ before_install:
 install:
   - pip install -r requirements.txt
   - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
+  # Install FSL using Neurodebian
+  - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
+  - sudo apt-get -y update
+  - sudo apt-get -y install fsl-core
+  - source /etc/fsl/fsl.sh;
+  - export FSLOUTPUTTYPE=NIFTI_GZ  
 
   # - pip install git+git://github.com/ANTsX/ANTsPy.git
 
