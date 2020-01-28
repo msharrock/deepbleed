@@ -6,13 +6,46 @@ python:
 os:
   - linux
 
+cache:
+    - directories:
+        - /home/travis/build/ANTsPy/itkbuild
+        - /home/travis/build/ANTsPy/itksource
+        - /home/travis/build/ANTsPy/ants/lib
+        - /home/travis/build/ANTsPy/build
+        - /usr/local
+
+
 before_install:
+  - echo ${PWD}
+  - cd ../../
+  - git clone https://github.com/ANTsX/ANTsPy
+  - ANTsPy_DIR=${PWD}/ANTsPy
+  - cd ANTsPy
+  - |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      CMAKE_INSTALLER=install-cmake.sh && \
+        curl -sSL https://cmake.org/files/v3.11/cmake-3.11.3-Linux-x86_64.sh -o ${CMAKE_INSTALLER} && \
+        chmod +x ${CMAKE_INSTALLER} && \
+        sudo ./${CMAKE_INSTALLER} --prefix=/usr/local --skip-license && \
+        rm -f ${CMAKE_INSTALLER}
+    fi
+  - alias cmake=/usr/local/bin/cmake
+  - export PATH=/usr/local/bin/cmake/bin:/usr/local/bin:${PATH}
+  - pip3 install scipy==1.2 pandas numpy matplotlib sklearn statsmodels nibabel
+  - pip3 install coveralls plotly webcolors scikit-image;
+  - if [ ! -f ${ANTsPy_DIR}/itkbuild/ITKConfig.cmake ]; then bash ${ANTsPy_DIR}/scripts/configure_ITK.sh; fi
+  - temp=`find ./ -name "ITKConfig.cmake"`  
+  - echo $temp
+  - python3 setup.py install
+  - export ITK_DIR=${ANTsPy_DIR}/itkbuild/
+  - cd ${TRAVIS_BUILD_DIR}
   - wget --no-check-certificate https://archive.data.jhu.edu/api/access/datafile/1311?gbrecs=true -O 01.tar.xz
   - tar xvf 01.tar.xz
+  - rm 01.tar.xz
   - mkdir -p input 
   - mv 01/BRAIN_1_Anonymized.nii.gz input/image.nii.gz
+  - rm -rf 01/
   - mkdir -p output
-  - mkdir -p weights
   - wget -O weights.zip https://www.dropbox.com/s/v2ptd9mfpo13gcb/mistie_2-20200122T175000Z-001.zip?dl=1
   - unzip -j weights.zip 
   - for i in _data-00001-of-00002 _data-00000-of-00002 _index; do out=`echo ${i} | sed "s/_/weights./"`; mv ${i} ${out}; done
@@ -22,7 +55,7 @@ install:
   - pip install -r requirements.txt
   # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
   # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspy-0.1.7-cp36-cp36m-linux_x86_64.whl
-  - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
+  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
   # Install FSL using Neurodebian
   - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
   - sudo apt-get -y update
