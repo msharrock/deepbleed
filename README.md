@@ -40,5 +40,5 @@ To run a prediction, start the docker image, link the data path that contains th
 ```bash
 $ docker run -it msharrock/deepbleed bash -v /path/to/data:/data/ 
 ```
-Then run predictions as previously noted, the working directory on launch is set to this repository.
+Pull this repository from github and then run predictions as previously noted
 
