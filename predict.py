@@ -64,7 +64,7 @@ template = ants.image_read(TEMPLATE_PATH, pixeltype = 'float')
 
 for filename in files:
 
-# preprocessing   
+    # preprocessing   
     if verbose:
         timestamp = time.time()
         print('loading:', filename)  
@@ -80,12 +80,12 @@ for filename in files:
     image, transforms = register.rigid(template, image)
     image, ants_params = convert.ants2np(image)
 
-# neural net prediction 
+    # neural net prediction 
     if verbose:
         print('generating prediction')   
     prediction = model.predict(image)
-    
-# invert registration
+
+    # invert registration
     original_image = ants.image_read(filename)
     prediction = convert.np2ants(prediction, ants_params)
 
@@ -95,10 +95,12 @@ for filename in files:
     prediction = convert.ants2nii(prediction)
 
     if verbose:
-        print('saving:', os.path.join(OUT_DIR, os.path.basename(filename))
+        print('saving file')    	
+    	# print('saving:', os.path.join(OUT_DIR, os.path.basename(filename))
+
     nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename)))
-    
+
     if verbose:
         print(os.path.basename(filename), ': took {0} seconds !'.format(time.time() - timestamp))
 if verbose:
-    print ('All files complete, the pipeline took {0} seconds !'.format(time.time() - timestamp))
+   	print ('All files complete, the pipeline took {0} seconds !'.format(time.time() - timestamp))
