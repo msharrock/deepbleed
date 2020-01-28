@@ -27,7 +27,7 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
 
-Link to weights: https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing
+Link to weights: https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing .  You will likely want to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
 
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
 
@@ -45,6 +45,18 @@ To run a prediction, start the docker image, link the data path that contains th
 $ docker run -it msharrock/deepbleed bash -v /path/to/data:/data/ 
 ```
 Pull this repository from github and then run predictions as previously noted
+
+### Directions for OSX
+
+For OSX, you should likely install `ANTsPy` using a git install of:
+```bash
+pip install git+git://github.com/ANTsX/ANTsPy.git
+```
+
+But you can try a release from the releases page: https://github.com/ANTsX/ANTsPy/releases
+```bash
+python3.7 -m pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspyx-0.1.8-cp37-cp37m-macosx_10_14_x86_64.whl
+```
 
 
 # License
