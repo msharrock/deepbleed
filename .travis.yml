@@ -13,12 +13,10 @@ before_install:
   - mv 01/BRAIN_1_Anonymized.nii.gz input/image.nii.gz
   - mkdir -p output
   - mkdir -p weights
-  - cd weights
   - wget -O weights.zip https://www.dropbox.com/s/v2ptd9mfpo13gcb/mistie_2-20200122T175000Z-001.zip?dl=1
   - unzip -j weights.zip 
-  - for i in _*; do out=`echo ${i} | sed "s/_/./"`; mv ${i} ${out}; done
+  - for i in _data-00001-of-00002 _data-00000-of-00002 _index; do out=`echo ${i} | sed "s/_/weights./"`; mv ${i} ${out}; done
   - ls -a 
-  - cd ..
 
 install:
   - pip install -r requirements.txt
@@ -35,4 +33,4 @@ install:
 
 # command to run tests
 script:
-  - python3 predict.py --verbose --indir ./input --outdir ./output --weights ./weights/.index
+  - python3 predict.py --verbose --indir ./input --outdir ./output --weights weights
