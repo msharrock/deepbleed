@@ -42,3 +42,6 @@ $ docker run -it msharrock/deepbleed bash -v /path/to/data:/data/
 ```
 Pull this repository from github and then run predictions as previously noted
 
+
+# License
+Please see LICENSE.md for information of the license and uses.
