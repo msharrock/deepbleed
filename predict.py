@@ -49,13 +49,13 @@ if setup.weights:
 else: 
     WEIGHT_PATH = 'weights'
 
-# setup directory trees
-IN_DIR = setup.IN_DIR
-OUT_DIR = setup.OUT_DIR 
-
 # load the model and weights
 model = VNet()
 model.load_weights(WEIGHT_PATH)
+
+# setup directory trees
+IN_DIR = setup.IN_DIR
+OUT_DIR = setup.OUT_DIR 
 
 # load input data
 files = sorted(next(os.walk(IN_DIR))[2])
@@ -64,11 +64,12 @@ template = ants.image_read(TEMPLATE_PATH, pixeltype = 'float')
 
 for filename in files:
 
-# preprocessing   
+    # preprocessing   
     if verbose:
         timestamp = time.time()
         print('loading:', filename)  
     image = nib.load(filename)
+    original_image = ants.image_read(filename)
     
     if verbose:
         print('brain extraction') 
@@ -80,13 +81,12 @@ for filename in files:
     image, transforms = register.rigid(template, image)
     image, ants_params = convert.ants2np(image)
 
-# neural net prediction 
+    # neural net prediction 
     if verbose:
         print('generating prediction')   
     prediction = model.predict(image)
-    
-# invert registration
-    original_image = ants.image_read(filename)
+
+    # invert registration
     prediction = convert.np2ants(prediction, ants_params)
 
     if verbose:
@@ -95,10 +95,10 @@ for filename in files:
     prediction = convert.ants2nii(prediction)
 
     if verbose:
-        print('saving:', os.path.join(OUT_DIR, os.path.basename(filename))
+        print('saving:', os.path.join(OUT_DIR, os.path.basename(filename)))
     nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename)))
-    
+
     if verbose:
         print(os.path.basename(filename), ': took {0} seconds !'.format(time.time() - timestamp))
 if verbose:
-    print ('All files complete, the pipeline took {0} seconds !'.format(time.time() - timestamp))
+   	print ('All files complete, the pipeline took {0} seconds !'.format(time.time() - timestamp))

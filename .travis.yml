@@ -1,0 +1,45 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: python
+python:
+  - "3.6"
+
+os:
+  - linux
+
+before_install:
+  - wget --no-check-certificate https://archive.data.jhu.edu/api/access/datafile/1311?gbrecs=true -O 01.tar.xz
+  - tar xvf 01.tar.xz
+  - rm 01.tar.xz
+  - mkdir -p input 
+  - mv 01/BRAIN_1_Anonymized.nii.gz input/image.nii.gz
+  - rm -rf 01/
+  - mkdir -p output
+  - wget -O weights.zip https://www.dropbox.com/s/v2ptd9mfpo13gcb/mistie_2-20200122T175000Z-001.zip?dl=1
+  - unzip -j weights.zip 
+  - for i in _data-00001-of-00002 _data-00000-of-00002 _index; do out=`echo ${i} | sed "s/_/weights./"`; mv ${i} ${out}; done
+  - ls -a 
+
+install:
+  - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
+  - tar xvf ITKR.tar.gz
+  - export ITK_DIR=${PWD}/ITKR/libs
+  - pip install -r requirements.txt
+  - git clone https://github.com/ANTsX/ANTsPy
+  - cd ANTsPy
+  - python3 setup.py install
+  - cd ${TRAVIS_BUILD_DIR}
+  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
+  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspy-0.1.7-cp36-cp36m-linux_x86_64.whl
+  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
+  # Install FSL using Neurodebian
+  - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
+  - sudo apt-get -y update
+  - sudo apt-get -y install fsl-core
+  - source /etc/fsl/fsl.sh;
+  - export FSLOUTPUTTYPE=NIFTI_GZ  
+
+  # - pip install git+git://github.com/ANTsX/ANTsPy.git
+
+# command to run tests
+script:
+  - python3 predict.py --verbose --indir ./input --outdir ./output --weights weights
