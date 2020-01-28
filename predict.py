@@ -69,6 +69,7 @@ for filename in files:
         timestamp = time.time()
         print('loading:', filename)  
     image = nib.load(filename)
+    original_image = ants.image_read(filename)
     
     if verbose:
         print('brain extraction') 
@@ -86,7 +87,6 @@ for filename in files:
     prediction = model.predict(image)
 
     # invert registration
-    original_image = ants.image_read(filename)
     prediction = convert.np2ants(prediction, ants_params)
 
     if verbose:
