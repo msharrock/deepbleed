@@ -95,9 +95,7 @@ for filename in files:
     prediction = convert.ants2nii(prediction)
 
     if verbose:
-        print('saving file')    	
-    	# print('saving:', os.path.join(OUT_DIR, os.path.basename(filename))
-
+        print('saving:', os.path.join(OUT_DIR, os.path.basename(filename)))
     nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename)))
 
     if verbose:
