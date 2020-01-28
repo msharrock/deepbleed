@@ -50,8 +50,8 @@ else:
     WEIGHT_PATH = 'weights'
 
 # setup directory trees
-IN_DIR = setup.IN_DIR
-OUT_DIR = setup.OUT_DIR 
+IN_DIR = setup.indir
+OUT_DIR = setup.outdir 
 
 # load the model and weights
 model = VNet()
