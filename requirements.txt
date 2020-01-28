@@ -11,3 +11,4 @@ matplotlib
 h5py>=2.9
 fslpy
 gast==0.2.2
+tensorflow
