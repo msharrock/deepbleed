@@ -23,7 +23,7 @@ install:
   - pip install -r requirements.txt
   - git clone https://github.com/ANTsX/ANTsPy
   - cd ANTsPy
-  - python3 setup.py install
+  - travis_wait 100 python3 setup.py install
   - cd ${TRAVIS_BUILD_DIR}
   # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
   # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspy-0.1.7-cp36-cp36m-linux_x86_64.whl
