@@ -1,7 +1,7 @@
 ## DeepBleed
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/muschellij2/deepbleed.svg?branch=master)](https://travis-ci.com/muschellij2/deepbleed)
+[![Travis build status](https://travis-ci.com/muschellij2/deepbleed.svg?branch=master)](https://travis-ci.com/msharrock/deepbleed)
 <!-- badges: end -->
 
 ICH volumetric estimation is a task routinely performed in clinical research. This is the first publicly available deep neural network model to perform the task of ICH segmentation and volume estimation. The model expects non-contrast CT in NIfTI format and automatically performs preprocessing including a validated CT brain extraction method and spatial normalization via registration to a 1.5mm x 1.5mm x 1.5mm CT template with a shape of (128, 128, 128). 
