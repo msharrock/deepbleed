@@ -1,4 +1,4 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
 language: python
 python:
   - "3.6"
@@ -20,15 +20,12 @@ before_install:
   - ls -a 
 
 install:
-  - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
-  - tar xvf ITKR.tar.gz
-  - export ITK_DIR=${PWD}/ITKR/libs
   - pip install -r requirements.txt
-  - git clone https://github.com/ANTsX/ANTsPy
-  - cd ANTsPy
-  - python3 setup.py install
+  #- git clone https://github.com/ANTsX/ANTsPy
+  #- cd ANTsPy
+  #- python3 setup.py install
   - cd ${TRAVIS_BUILD_DIR}
-  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
+   - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
   # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspy-0.1.7-cp36-cp36m-linux_x86_64.whl
   # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
   # Install FSL using Neurodebian
