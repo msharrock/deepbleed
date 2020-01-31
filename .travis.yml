@@ -27,7 +27,7 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
   - sudo apt-get install libc6
   - sudo apt-get install libc6-dev
-  - sudo apt-get install libc-bin=2.27-3ubuntu1
+  - sudo apt-get install libc-bin=2.27
   - sudo apt-get update
   - pip install -r requirements.txt
   - python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
