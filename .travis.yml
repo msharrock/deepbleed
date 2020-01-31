@@ -1,4 +1,4 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
 language: python
 python:
   - "3.6"
@@ -32,27 +32,33 @@ before_install:
   - ls -a 
 
 install:
-  - x=`export_clang_cxx`; eval ${x}  
-  - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
-  - tar xvf ITKR.tar.gz
-  - export ITK_DIR=${PWD}/ITKR/libs
-  - pip install -r requirements.txt
-  - git clone https://github.com/ANTsX/ANTsPy
-  - cd ANTsPy
-  - python3 setup.py install
+  # - x=`export_clang_cxx`; eval ${x}  
+  # - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
+  # - tar xvf ITKR.tar.gz
+  # - export ITK_DIR=${PWD}/ITKR/libs
+  # - pip install -r requirements.txt
+  # - git clone https://github.com/ANTsX/ANTsPy
+  # - cd ANTsPy
+  # - python3 setup.py install
   - cd ${TRAVIS_BUILD_DIR}
-  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
-  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspy-0.1.7-cp36-cp36m-linux_x86_64.whl
-  # - pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
+  - sudo apt-get install libc6
+  - sudo apt-get install libc6-dev
+  - sudo apt-get update
+  - pip install -r requirements.txt
+  #- python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+  #- pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
+  #- pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
+  - pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.2.0/antspyx-0.2.0-cp37-cp37m-linux_x86_64.whl
   # Install FSL using Neurodebian
   - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
   - sudo apt-get -y update
   - sudo apt-get -y install fsl-core
   - source /etc/fsl/fsl.sh;
-  - export FSLOUTPUTTYPE=NIFTI_GZ  
-
+  - export FSLOUTPUTTYPE=NIFTI_GZ 
+  
+  
   # - pip install git+git://github.com/ANTsX/ANTsPy.git
-
+  
 # command to run tests
 script:
   - python3 predict.py --verbose --indir ./input --outdir ./output --weights weights
