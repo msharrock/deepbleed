@@ -26,6 +26,8 @@ install:
   
   - cd ${TRAVIS_BUILD_DIR}
   - sudo apt-get install libc6
+  - sudo apt-get install libc6-dev
+  - sudo apt-get update
   - pip install -r requirements.txt
   - python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
   
@@ -38,7 +40,8 @@ install:
   - sudo apt-get -y update
   - sudo apt-get -y install fsl-core
   - source /etc/fsl/fsl.sh;
-  - export FSLOUTPUTTYPE=NIFTI_GZ  
+  - export FSLOUTPUTTYPE=NIFTI_GZ 
+  
   
   # - pip install git+git://github.com/ANTsX/ANTsPy.git
   
