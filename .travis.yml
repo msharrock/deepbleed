@@ -37,11 +37,11 @@ install:
   - sudo apt-get install libc6
   - sudo apt-get install libc6-dev
   - sudo apt-get update
-  - pip install -r requirements.txt  
-  # - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
-  # - tar xvf ITKR.tar.gz
-  # - export ITK_DIR=${PWD}/ITKR/libs
-  - pip install itk
+  # - pip install -r requirements.txt  
+  - wget -O ITKR.tar.gz https://github.com/stnava/ITKR/releases/download/v0.5.2.0.2/ITKR_0.5.2_R_x86_64-pc-linux-gnu_R3.6.tar.gz
+  - tar xvf ITKR.tar.gz
+  - export ITK_DIR=${PWD}/ITKR/libs
+  # - pip install itk
   - pip install -r requirements.txt
   - git clone https://github.com/ANTsX/ANTsPy
   - cd ANTsPy
