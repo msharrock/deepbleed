@@ -24,8 +24,8 @@ On some systems you may need to rename the files beginning with a `.` to a commo
  
 Option | Argument | Example
 ------------ | ------------- | -------------
-Number GPUs | --gpus | `--gpus '3'`
-Number CPUs | --cpus | `--cpus '3'`
+Number GPUs | --gpus | `--gpus 2`
+Number CPUs | --cpus | `--cpus 8`
 Verbose + Timing | --verbose | `--verbose`
 
 ### Setup
