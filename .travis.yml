@@ -5,9 +5,6 @@ python:
   
 dist: bionic
 
-os:
-  - linux
-
 before_install:
   - wget --no-check-certificate https://archive.data.jhu.edu/api/access/datafile/1311?gbrecs=true -O 01.tar.xz
   - tar xvf 01.tar.xz
@@ -19,36 +16,21 @@ before_install:
   - wget -O weights.zip https://www.dropbox.com/s/v2ptd9mfpo13gcb/mistie_2-20200122T175000Z-001.zip?dl=1
   - unzip -j weights.zip 
   - for i in _data-00001-of-00002 _data-00000-of-00002 _index; do out=`echo ${i} | sed "s/_/weights./"`; mv ${i} ${out}; done
-  - ls -a 
 
 install:
-  #- git clone https://github.com/ANTsX/ANTsPy.git
-  #- cd ANTsPy
-  #- python3 setup.py install
-  
   - cd ${TRAVIS_BUILD_DIR}
   - sudo apt-get update
   - sudo apt-get install libc6
-  - sudo apt-get install libc6-dev
   
   - pip install -r requirements.txt
-  #- python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
-  
-  #- pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.4/antspy-0.1.4-cp36-cp36m-linux_x86_64.whl
-  #- pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.6/antspy-0.1.6-cp36-cp36m-linux_x86_64.whl
   - pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspyx-0.1.7-cp37-cp37m-linux_x86_64.whl
   
   # Install FSL using Neurodebian
-  
   - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
   - sudo apt-get -y update
   - sudo apt-get -y install fsl-core
   - source /etc/fsl/fsl.sh;
-  - export FSLOUTPUTTYPE=NIFTI_GZ 
-  
-  
-  # - pip install git+git://github.com/ANTsX/ANTsPy.git
-  
+
 # command to run tests
 script:
   - python3 predict.py --verbose --indir ./input --outdir ./output --weights weights
