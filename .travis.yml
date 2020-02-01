@@ -6,16 +6,6 @@ python:
 dist: bionic
 
 before_install:
-  - export LD_LIBRARY_PATH=/usr/local/clang/lib:${LD_LIBRARY_PATH}
-  - fname=travis_helpers.sh
-  - wget -O ${fname} http://bit.ly/travis_helpers
-  - cat ${fname}; source ${fname} || exit 0; rm ${fname}  
-  - x=`export_clang_cxx`; eval ${x}
-  - clang_cxx  
-  - export cmake_version="3.14"
-  - cmake --version
-  - x=`cmake_setup`; echo "${x}"; eval ${x};
-  - cmake --version
   - wget --no-check-certificate https://archive.data.jhu.edu/api/access/datafile/1311?gbrecs=true -O 01.tar.xz
   - tar xvf 01.tar.xz
   - rm 01.tar.xz
