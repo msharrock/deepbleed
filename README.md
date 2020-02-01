@@ -26,7 +26,7 @@ FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 \*Please read and agree to the software license for FSL prior to use. 
 <br/>
 
-## Weights and Options 
+### Setup
 
 Train Dataset | Val Dataset | Val Dice | Weights Link
 ------------ | ------------- | ------------- | -------------
@@ -40,7 +40,7 @@ Number GPUs | --gpus | `--gpus '3'`
 Number CPUs | --cpus | `--cpus '3'`
 Verbose + Timing | --verbose | `--verbose`
 
-## DeepBleed Docker
+### DeepBleed Docker
 
 Alternatively, you can pull a pre-built docker image with the dependencies installed:
 ```bash
