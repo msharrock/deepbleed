@@ -13,13 +13,15 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 ```bash
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
-
+ <br/>
+ 
 Train Dataset | Val Dataset | Val Dice | Weights Link
 ------------ | ------------- | ------------- | -------------
 MISTIE 2 | MISTIE 3 | 0.919 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
 
 On some systems you may need to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
-
+ <br/>
+ 
 Option | Argument | Example
 ------------ | ------------- | -------------
 Number GPUs | --gpus | `--gpus '3'`
