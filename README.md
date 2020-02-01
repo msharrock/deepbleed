@@ -13,7 +13,7 @@ Current dependencies are listed below.
 
 Software | Version | URL
 ------------ | ------------- | -------------
-Tensorflow | gpu-2.1.0 | https://www.tensorflow.org
+Tensorflow | 2.1.0 | https://www.tensorflow.org
 ANTsPy | 0.1.7 | https://github.com/ANTsX/ANTsPy
 FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
 FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
