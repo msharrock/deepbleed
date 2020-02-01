@@ -9,6 +9,16 @@ ICH volumetric estimation is a task routinely performed in clinical research. Th
 
 ![DeepBleed pipeline](deepbleed.png)
 
+To run an ICH prediction set the path to directories for inputs, outputs and model weights:
+```bash
+$ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
+```
+
+Train Dataset | Val Dataset | Val Dice | Weights Link
+------------ | ------------- | ------------- | -------------
+MISTIE 2 | MISTIE 3 | 0.919 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
+
+
 Current dependencies are listed below. 
 
 Software | Version | URL
@@ -21,12 +31,8 @@ FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 \*Please read and agree to the software license for FSL prior to use. 
 <br/>
 
-To run an ICH prediction set the path to directories for inputs, outputs and model weights:
-```bash
-$ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
-```
 
-Link to weights: [Mistie 2](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
+## Setup
 
 You will likely want to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
 
