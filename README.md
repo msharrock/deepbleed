@@ -13,13 +13,12 @@ Current dependencies are listed below.
 
 Software | Version | URL
 ------------ | ------------- | -------------
-Tensorflow | gpu-2.0.0-rc0 | https://www.tensorflow.org
-ANTsPy | 0.1.4 | https://github.com/ANTsX/ANTsPy
+Tensorflow | gpu-2.1.0 | https://www.tensorflow.org
+ANTsPy | 0.1.7 | https://github.com/ANTsX/ANTsPy
 FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
 FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 
 \*Please read and agree to the software license for FSL prior to use. 
-<br/>
 <br/>
 
 To run an ICH prediction set the path to directories for inputs, outputs and model weights:
@@ -27,7 +26,9 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
 
-Link to weights: https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing .  You will likely want to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
+Link to weights: [Mistie 2](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
+
+You will likely want to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
 
 You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
 
@@ -58,6 +59,5 @@ But you can try a release from the releases page: https://github.com/ANTsX/ANTsP
 python3.7 -m pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspyx-0.1.8-cp37-cp37m-macosx_10_14_x86_64.whl
 ```
 
-
-# License
+### License
 Please see LICENSE.md for information of the license and uses.
