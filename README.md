@@ -14,11 +14,6 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
 
-Train Dataset | Val Dataset | Val Dice | Weights Link
------------- | ------------- | ------------- | -------------
-MISTIE 2 | MISTIE 3 | 0.919 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
-
-
 Current dependencies are listed below. 
 
 Software | Version | URL
@@ -31,21 +26,26 @@ FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
 \*Please read and agree to the software license for FSL prior to use. 
 <br/>
 
+## Weights and Options 
 
-## Setup
+Train Dataset | Val Dataset | Val Dice | Weights Link
+------------ | ------------- | ------------- | -------------
+MISTIE 2 | MISTIE 3 | 0.919 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
 
-You will likely want to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
+On some systems you may need to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
 
-You may optionally specify the number of GPUs and CPUs to use with --gpus and --cpus.
+Option | Argument | Example
+------------ | ------------- | -------------
+Number GPUs | --gpus | `--gpus '3'`
+Number CPUs | --cpus | `--cpus '3'`
+Verbose + Timing | --verbose | `--verbose`
 
-### DeepBleed Docker
+## DeepBleed Docker
 
 Alternatively, you can pull a pre-built docker image with the dependencies installed:
 ```bash
 $ docker pull msharrock/deepbleed 
 ```
-
-<br/>
 
 To run a prediction, start the docker image, link the data path that contains the indir and outdir:
 ```bash
@@ -59,7 +59,6 @@ For OSX, you should likely install `ANTsPy` using a git install of:
 ```bash
 pip install git+git://github.com/ANTsX/ANTsPy.git
 ```
-
 But you can try a release from the releases page: https://github.com/ANTsX/ANTsPy/releases
 ```bash
 python3.7 -m pip install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspyx-0.1.8-cp37-cp37m-macosx_10_14_x86_64.whl
