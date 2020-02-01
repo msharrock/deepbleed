@@ -25,6 +25,7 @@ install:
   #- python3 setup.py install
   
   - cd ${TRAVIS_BUILD_DIR}
+  - sudo apt-get update
   - sudo apt-get install libc6
   - sudo apt-get install libc6-dev
   
