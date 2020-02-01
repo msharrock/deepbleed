@@ -14,20 +14,6 @@ To run an ICH prediction set the path to directories for inputs, outputs and mod
 $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weights /path/to/weights 
 ```
 
-Current dependencies are listed below. 
-
-Software | Version | URL
------------- | ------------- | -------------
-Tensorflow | 2.1.0 | https://www.tensorflow.org
-ANTsPy | 0.1.7 | https://github.com/ANTsX/ANTsPy
-FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
-FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
-
-\*Please read and agree to the software license for FSL prior to use. 
-<br/>
-
-### Setup
-
 Train Dataset | Val Dataset | Val Dice | Weights Link
 ------------ | ------------- | ------------- | -------------
 MISTIE 2 | MISTIE 3 | 0.919 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
@@ -39,6 +25,19 @@ Option | Argument | Example
 Number GPUs | --gpus | `--gpus '3'`
 Number CPUs | --cpus | `--cpus '3'`
 Verbose + Timing | --verbose | `--verbose`
+
+### Setup
+Current dependencies are listed below. 
+
+Software | Version | URL
+------------ | ------------- | -------------
+Tensorflow | 2.1.0 | https://www.tensorflow.org
+ANTsPy | 0.1.7 | https://github.com/ANTsX/ANTsPy
+FSLPy | 2.7.0 | https://git.fmrib.ox.ac.uk/fsl/fslpy
+FSL\* | 6.0.2 | https://fsl.fmrib.ox.ac.uk/fsl/fslwiki
+
+\*Please read and agree to the software license for FSL prior to use. 
+<br/>
 
 ### DeepBleed Docker
 
