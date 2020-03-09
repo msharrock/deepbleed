@@ -4,7 +4,7 @@
 [![Travis build status](https://travis-ci.com/msharrock/deepbleed.svg?branch=master)](https://travis-ci.com/msharrock/deepbleed)
 <!-- badges: end -->
 
-ICH volumetric estimation is a task routinely performed in clinical research. This is the first publicly available deep neural network model to perform the task of ICH segmentation and volume estimation. The model expects non-contrast CT in NIfTI format and automatically performs preprocessing including a validated CT brain extraction method and spatial normalization via registration to a 1.5mm x 1.5mm x 1.5mm CT template with a shape of (128, 128, 128). 
+ICH volumetric estimation is a task routinely performed in clinical research. This is the first publicly available deep neural network model to perform the task of ICH segmentation and volume estimation. We showed in our paper that 3D segmentation with appropriate anatomic context presented in the receptive field outperforms 2D segmentation and state-of-the-art results can be obtained on smaller datasets with standard publicly available models. This model expects non-contrast CT in NIfTI format and automatically performs preprocessing including a validated CT brain extraction method and spatial normalization via registration to a 1.5mm x 1.5mm x 1.5mm CT template with a shape of (128, 128, 128). 
  <br/>
 
 ![DeepBleed pipeline](deepbleed.png)
@@ -17,7 +17,7 @@ $ python3 predict.py --indir /path/to/inputs/ --outdir /path/to/outputs/ --weigh
  
 Train Dataset | Val Dataset | Bleeds | Val Dice | Weights Link
 ------------ | ------------- | ------------- | ------------- | -------------
-MISTIE 2 | MISTIE 3 | ICH, IVH | 0.914 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
+MISTIE 2 | MISTIE 3 | ICH, IVH | 0.92 | [m2_weights](https://drive.google.com/drive/folders/1VzU8gcVARb9Tq5tFOwNsIqPCL0css-iN?usp=sharing)
 
 On some systems you may need to rename the files beginning with a `.` to a common prefix, such as `weights` (e.g. `.index` becomes `weights.index`).
  <br/>
