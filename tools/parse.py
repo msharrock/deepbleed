@@ -37,5 +37,7 @@ def args(mode):
                             type=int, dest='CPUS', help='number of CPU cores')
         parser.add_argument('-v', '--verbose', required=False, action='store_true',
                             help='verbose and timed script')
-                            
+        parser.add_argument('-b', '--brain', required=False, action='store_true',
+                            help='image is brain-only, extraction skipped')
+
     return parser.parse_args()
