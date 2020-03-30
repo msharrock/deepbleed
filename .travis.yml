@@ -21,10 +21,8 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
   - sudo apt-get update
   - sudo apt-get install libc6
-  
   - pip install -r requirements.txt
   - pip3 install https://github.com/ANTsX/ANTsPy/releases/download/v0.1.8/antspyx-0.1.7-cp37-cp37m-linux_x86_64.whl
-  
   # Install FSL using Neurodebian
   - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
   - sudo apt-get -y update

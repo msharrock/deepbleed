@@ -12,6 +12,7 @@ Command Line Arguments:
         --cpus: int, optional, number of cpu cores to utilize
         --gpus: int, optional, number of gpus to utilize
         --verbose: optional, script is verbose and timed
+        --brain: optional, image is brain-only, extraction skipped
 """
 
 import os
@@ -28,6 +29,7 @@ from models.vnet import VNet
 # load command line arguments
 setup = parse.args('predict')
 verbose = setup.verbose
+brain_only = setup.brain
 
 # environmental variable setup
 os.environ["ANTS_RANDOM_SEED"] = '1'
@@ -68,13 +70,16 @@ for filename in files:
     if verbose:
         timestamp = time.time()
         print('loading:', filename)  
-    image = nib.load(filename)
     original_image = ants.image_read(filename)
     
-    if verbose:
-        print('brain extraction') 
-    image = extract.brain(image)
-    image = convert.nii2ants(image)
+    if brain_only:
+        image = original_image ;
+    else:        
+        image = nib.load(filename)
+        if verbose:
+            print('brain extraction') 
+        image = extract.brain(image)
+        image = convert.nii2ants(image)
 
     if verbose:
         print('template registration')  
