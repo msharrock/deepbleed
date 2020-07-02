@@ -4,6 +4,11 @@
 [![Travis build status](https://travis-ci.com/msharrock/deepbleed.svg?branch=master)](https://travis-ci.com/msharrock/deepbleed)
 <!-- badges: end -->
 
+Please see our [MedRxiv Paper](https://www.medrxiv.org/content/10.1101/2020.03.05.20031823v1) for more information and cite (currently) if using in publications:
+
+Sharrock, M., Mould, W. A., Ali, H., Hildreth, M., Hanley, D. F., & Muschelli, J. (2020). 3D Deep Neural Network Segmentation of Intracerebral Hemorrhage: Development and Validation for Clinical Trials. medRxiv.
+
+
 ICH volumetric estimation is a task routinely performed in clinical research. This is the first publicly available deep neural network model to perform the task of ICH segmentation and volume estimation. We showed in our paper that 3D segmentation with appropriate anatomic context presented in the receptive field outperforms 2D segmentation and state-of-the-art results can be obtained on smaller datasets with standard publicly available models. This model expects non-contrast CT in NIfTI format and automatically performs preprocessing including a validated CT brain extraction method and spatial normalization via registration to a 1.5mm x 1.5mm x 1.5mm CT template with a shape of (128, 128, 128). 
  <br/>
 
