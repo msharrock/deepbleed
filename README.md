@@ -1,5 +1,4 @@
-![](title.png)
-
+![deepbleed](title.png)
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.com/msharrock/deepbleed.svg?branch=master)](https://travis-ci.com/msharrock/deepbleed)
 <!-- badges: end -->
