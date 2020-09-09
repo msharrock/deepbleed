@@ -19,11 +19,21 @@ def ants2nii(image):
     return nii_image
 
 def nii2ants(image):
-    from tempfile import mktemp
-    tmpfile = mktemp(suffix='.nii.gz')
-    image.to_filename(tmpfile)
-    image = ants.image_read(tmpfile, pixeltype = 'float')
-    os.remove(tmpfile)
+    ndim = image.ndim
+    q_form = image.get_qform()
+    spacing = image.header["pixdim"][1 : ndim + 1]
+
+    origin = np.zeros((ndim))
+    origin[:3] = q_form[:3, 3]
+
+    direction = np.diag(np.ones(ndim))
+    direction[:3, :3] = q_form[:3, :3] / spacing[:3]
+
+    image = ants.from_numpy(
+        data = image.get_fdata(),
+        origin = origin.tolist(),
+        spacing = spacing.tolist(),
+        direction = direction )
     return image
 
 def ants2np(image):
