@@ -19,13 +19,11 @@ def ants2nii(image):
     return nii_image
 
 def nii2ants(image):
-    ndim = image.ndim
+    ndim = image.ndim #must be 3D
     q_form = image.get_qform()
     spacing = image.header["pixdim"][1 : ndim + 1]
-
     origin = np.zeros((ndim))
     origin[:3] = q_form[:3, 3]
-
     direction = np.diag(np.ones(ndim))
     direction[:3, :3] = q_form[:3, :3] / spacing[:3]
 

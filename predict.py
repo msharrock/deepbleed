@@ -58,7 +58,11 @@ model.load_weights(WEIGHT_PATH)
 # setup directory trees
 IN_DIR = setup.IN_DIR
 OUT_DIR = setup.OUT_DIR 
-
+if not os.path.exists(IN_DIR):
+    os.mkdir(IN_DIR)
+if not os.path.exists(OUT_DIR):
+    os.mkdir(OUT_DIR)
+    
 # load input data
 files = sorted(next(os.walk(IN_DIR))[2])
 files = [os.path.join(IN_DIR, f) for f in files]
@@ -70,10 +74,12 @@ for filename in files:
     if verbose:
         timestamp = time.time()
         print('loading:', filename)  
-    original_image = ants.image_read(filename)
+    original_image = nib.load(filename)
+    original_image = convert.nii2ants(original_image)
+    
     
     if brain_only:
-        image = original_image ;
+        image = original_image
     else:        
         image = nib.load(filename)
         if verbose:
