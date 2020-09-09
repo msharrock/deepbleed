@@ -49,7 +49,7 @@ TEMPLATE_PATH = os.path.join('templates', 'scct_unsmooth_SS_0.01_128x128x128.nii
 if setup.weights:
     WEIGHT_PATH = setup.weights
 else: 
-    WEIGHT_PATH = 'weights'
+    WEIGHT_PATH = 'weights/weights'
 
 # load the model and weights
 model = VNet()
@@ -70,10 +70,12 @@ for filename in files:
     if verbose:
         timestamp = time.time()
         print('loading:', filename)  
-    original_image = ants.image_read(filename)
+    original_image = nib.load(filename)
+    original_image = convert.nii2ants(original_image)
+    
     
     if brain_only:
-        image = original_image ;
+        image = original_image
     else:        
         image = nib.load(filename)
         if verbose:

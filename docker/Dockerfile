@@ -162,7 +162,7 @@ ENV PATH=${FSLDIR}/bin:$PATH \
 RUN mkdir /.local && chmod a+rwx /.local
 RUN git clone https://github.com/msharrock/deepbleed && chmod a+rw ./deepbleed
 
-WORKDIR /home/deepbleed
+WORKDIR /deepbleed
 
 # download the weights
 RUN wget -O weights.zip https://www.dropbox.com/s/v2ptd9mfpo13gcb/mistie_2-20200122T175000Z-001.zip?dl=1  && unzip -j weights.zip 
