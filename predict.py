@@ -49,7 +49,7 @@ TEMPLATE_PATH = os.path.join('templates', 'scct_unsmooth_SS_0.01_128x128x128.nii
 if setup.weights:
     WEIGHT_PATH = setup.weights
 else: 
-    WEIGHT_PATH = 'weights/weights'
+    WEIGHT_PATH = 'weights'
 
 # load the model and weights
 model = VNet()
