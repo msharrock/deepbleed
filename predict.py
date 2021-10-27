@@ -84,24 +84,41 @@ for filename in files:
         image = original_image
     else:
         image = nib.load(filename)
+        #nib.save(image, "loaded.nii.gz")
         if verbose:
             print('brain extraction')
         image = extract.brain(image)
+        nib.save(image, "predict_extracted.nii.gz")
         image = convert.nii2ants(image)
+    print(image)
 
     if verbose:
         print('template registration')
     image, transforms = register.rigid(template, image)
+#    print("====")
+#    print(image)
+#    print(transforms)
+#    print(len(transforms))
+#    print("===")
     image, ants_params = convert.ants2np(image)
+
 
     # neural net prediction
     if verbose:
         print('generating prediction')
     prediction = model.predict(image)
 
-    # invert registration
     prediction = convert.np2ants(prediction, ants_params)
+    # warp to MNI
+    mni_transform = "ct2mni.mat"
+    mni_template = nib.load("icbm152_t1_tal_nlin_asym_09c_masked.nii.gz")
+    mni_affine = mni_template.affine
+    mni_header = mni_template.header
+    mni_img = ants.apply_transforms(convert.nii2ants(mni_template), prediction, [mni_transform])
+    mni_img = nib.Nifti1Image(mni_img.numpy(), header=mni_header, affine=mni_affine)
+    nib.save(mni_img, os.path.join(OUT_DIR, os.path.basename(filename).split(".")[0] +  "_mni_prediction.nii.gz"))
 
+    # invert registration
     if verbose:
         print('inverting registration')
     prediction = register.invert(original_image, prediction, transforms)
@@ -109,7 +126,7 @@ for filename in files:
 
     if verbose:
         print('saving:', os.path.join(OUT_DIR, os.path.basename(filename)))
-    nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename)))
+    nib.save(prediction, os.path.join(OUT_DIR, os.path.basename(filename).split(".")[0] +  "_prediction.nii.gz"))
 
     if verbose:
         print(os.path.basename(filename), ': took {0} seconds !'.format(time.time() - timestamp))
