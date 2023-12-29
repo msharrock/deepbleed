@@ -1,5 +1,5 @@
 numpy
-nibabel
+nibabel>=2.2
 pillow
 six
 sklearn
