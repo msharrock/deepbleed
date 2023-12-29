@@ -32,7 +32,7 @@ def brain(image):
         bet(tmpfile, tmpfile, fracintensity = 0.01)
         mask = fslmaths(tmpfile).bin().fillh().run()
         image = fslmaths(image).mas(mask).run()
-        image = nib.Nifti1Image(image.get_data(), affine, header)
+        image = nib.Nifti1Image(image.get_fdata(), affine, header)
         os.remove(tmpfile)
 
         return image
